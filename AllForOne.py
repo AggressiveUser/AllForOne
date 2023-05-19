@@ -104,6 +104,6 @@ def clone_repositories(file_url):
     print('\033[91m\033[93mPlease show your support by giving star to my GitHub repository "AllForOne".')
     print('GITHUB: https://github.com/AggressiveUser/AllForOne\033[0m')
     
-file_url = 'https://raw.githubusercontent.com/AggressiveUser/AggressiveUser.github.io/main/PleaseUpdateMe.txt'
+file_url = 'https://raw.githubusercontent.com/AggressiveUser/AllForOne/main/PleaseUpdateMe.txt'
 
 clone_repositories(file_url)
