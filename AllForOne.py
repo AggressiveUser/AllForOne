@@ -59,7 +59,7 @@ def clone_repositories(file_url):
 
     failed_repos = []
 
-    with ThreadPoolExecutor(max_workers=8) as executor:
+    with ThreadPoolExecutor(max_workers=6) as executor:
         futures = [executor.submit(clone_repository, repo) for repo in repositories]
 
         with tqdm(total=total_repos, unit='repo', desc='Cloning repositories', ncols=80) as progress_bar:
@@ -75,6 +75,8 @@ def clone_repositories(file_url):
                     progress = progress_bar.n / total_repos * 100
                     progress_bar.set_postfix({'Progress': f'{progress:.2f}%'})
                 futures = [future for future in futures if not future.done()]
+
+        progress_bar.close()  # Close the progress bar after completion
 
     print('Cloning process complete!\n')
 
