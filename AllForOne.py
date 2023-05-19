@@ -26,7 +26,7 @@ print("  `--'   `--'                                               			\033[0m")
 
 def git_clone(url, destination):
     env = os.environ.copy()
-    env['GIT_TERMINAL_PROMPT'] = '0'  # Disable prompting for username/password
+    env['GIT_TERMINAL_PROMPT'] = '0'
     result = subprocess.run(['git', 'clone', url, destination], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, env=env)
     return result.returncode, result.stderr.decode().strip()
 
@@ -46,7 +46,6 @@ def clone_repository(repo):
     return None
 
 def clone_repositories(file_url):
-    # Retrieve repo list from the server
     response = requests.get(file_url)
     if response.status_code == 200:
         repositories = response.text.strip().split('\n')
@@ -56,7 +55,7 @@ def clone_repositories(file_url):
 
     total_repos = len(repositories)
 
-    os.makedirs('TRASH', exist_ok=True)  # Create 'TRASH' folder if it doesn't exist
+    os.makedirs('TRASH', exist_ok=True) 
 
     failed_repos = []
 
@@ -84,12 +83,10 @@ def clone_repositories(file_url):
         for repo in failed_repos:
             print(repo)
 
-    # Check if the 'Template' folder exists, and create it if it doesn't
     template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Template')
     if not os.path.exists(template_folder):
         os.makedirs(template_folder)
 
-    # Copy YAML files to Template folder
     yaml_count = 0
     for root, dirs, files in os.walk('TRASH'):
         for file in files:
@@ -101,17 +98,12 @@ def clone_repositories(file_url):
 
     print(f'\033[92m \n{yaml_count} Nuclei Templates files copied to the Template folder.\033[0m')
     
-    # Remove the TRASH folder
     shutil.rmtree('TRASH')
     print('\nRemoving caches and temporary files.\n')
     time.sleep(2)
-    print('\033[91m\033[93mPlease show your support by starring my GitHub repository AllForOne.')
-    print('GITHUB: https://github.com/AggressiveUser\033[0m')
+    print('\033[91m\033[93mPlease show your support by giving star to my GitHub repository "AllForOne".')
+    print('GITHUB: https://github.com/AggressiveUser/AllForOne\033[0m')
     
-# Provide the path to your text file containing repository URLs
-#file_path = 'repo_list.txt'
-
-# URL of the repo_list.txt file on the web server
 file_url = 'https://raw.githubusercontent.com/AggressiveUser/AggressiveUser.github.io/main/PleaseUpdateMe.txt'
 
 clone_repositories(file_url)
