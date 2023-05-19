@@ -32,7 +32,7 @@ Please ensure that you comply with all relevant laws, terms of service, and guid
 
 ## Contributions :raising_hand:
 
-Contributions to this project are welcome! If you have any improvements, bug fixes, or additional features, feel free to submit a pull request.
+Contributions to this project are welcome! If you have any updated and new github repo for nuclei templates, feel free to submit a pull request for `PleaseUpdateMe.txt`
 
 ## License :page_facing_up:
 
