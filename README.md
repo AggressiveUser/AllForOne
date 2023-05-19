@@ -17,7 +17,7 @@ To get started, follow these steps:
 ```pip install -r requirements.txt```  :key:
 
 3.  Run the script:
-```python AllForOne.py``` :snake:
+```python AllForOne.py```  :snake:
 
 4.  Sit back and relax! The script will start collecting the Nuclei templates from public repositories.
  <img src="https://i.ibb.co/0BMmgXJ/image.png" width=500/>
