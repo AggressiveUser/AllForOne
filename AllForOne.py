@@ -7,22 +7,18 @@ import time
 import requests
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, wait
-# SCRIPT BY AGGRESSIVEUSER
-# GITHUB: https://github.com/Aggressiveuser
-# Linkedin: https://www.linkedin.com/in/AggressiveUser/
-# Twitter: https://twitter.com/AggressiveUserX
-# HackTheBox: https://app.hackthebox.com/profile/17569
+
 print("\033[91m\033[93m  ,-.       _,---._ __  / \      _   _ _     ___              ___               ")
 print(r" /  )    .-'       `./ /   \    /_\ | | |   / __\__  _ __    /___\_ __   ___    ")
 print(r"(  (   ,'            `/    /|  //_\\| | |  / _\/ _ \| '__|  //  // '_ \ / _ \   ")
 print(r' \  `-"             \ \   / | /  _  \ | | / / | (_) | |    / \_//| | | |  __/   ')
 print(r"  `.              ,  \ \ /  | \_/ \_/_|_| \/   \___/|_|    \___/ |_| |_|\___|   ")
-print(r"   /`.          ,'-`----Y   |              					")
-print(r"  (            ;        |   '        				                ")
+print(r"   /`.          ,'-`----Y   |                                             			")
+print(r"  (            ;        |   '                                             				")
 print(r"  |  ,-.    ,-' Git-HUB |  /         Nuclei Template Collector                  ")
 print(r"  |  | (   |      BoX   | /	          - AggressiveUser                      ")
-print(r"  )  |  \  `.___________|/                                   			")
-print("  `--'   `--'                                               			\033[0m")
+print(r"  )  |  \  `.___________|/                                   				")
+print("  `--'   `--'                                               					\033[0m")
 
 def git_clone(url, destination):
     env = os.environ.copy()
@@ -76,7 +72,7 @@ def clone_repositories(file_url):
                     progress_bar.set_postfix({'Progress': f'{progress:.2f}%'})
                 futures = [future for future in futures if not future.done()]
 
-        progress_bar.close()  # Close the progress bar after completion
+        progress_bar.close() 
 
     print('Cloning process complete!\n')
 
@@ -96,7 +92,9 @@ def clone_repositories(file_url):
                 source_path = os.path.join(root, file)
                 destination_path = os.path.join(template_folder, file)
                 shutil.copy2(source_path, destination_path)
-                yaml_count += 1
+                
+    yaml_files = [file for file in os.listdir(template_folder) if file.endswith('.yaml')]
+    yaml_count = len(yaml_files)
 
     print(f'\033[92m \n{yaml_count} Nuclei Templates files copied to the Template folder.\033[0m')
     
