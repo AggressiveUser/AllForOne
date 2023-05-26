@@ -10,14 +10,13 @@ The script leverages the GitHub repositories which containing Nuclei Templates. 
 
 To get started, follow these steps:
 
-1.  Clone the repository:
-```git clone https://github.com/AggressiveUser/AllForOne.git```  :computer:
 
-2.  Install the required dependencies:
-```pip install -r requirements.txt```  :key:
-
-3.  Run the script:
-```python AllForOne.py```  :snake:
+```
+git clone https://github.com/AggressiveUser/AllForOne.git
+cd AllForOne
+pip install -r requirements.txt
+python3 AllForOne.py
+```
 
 4.  Sit back and relax! The script will start collecting the Nuclei templates from public repositories.
  <img src="https://i.ibb.co/0BMmgXJ/image.png" width=500/>
