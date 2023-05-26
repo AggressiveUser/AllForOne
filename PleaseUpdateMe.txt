@@ -135,3 +135,5 @@ https://github.com/pacho15/mynuclei_templates
 https://github.com/pikpikcu/my-nuclei-templates
 https://github.com/zinminphyo0/KozinTemplates
 https://github.com/pacho15/mynuclei_templates
+https://github.com/projectdiscovery/nuclei-templates
+https://github.com/pikpikcu/my-nuclei-templates
