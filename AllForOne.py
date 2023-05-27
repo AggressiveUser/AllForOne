@@ -20,29 +20,58 @@ print(r"  |  | (   |      BoX   | /	          - AggressiveUser                  
 print(r"  )  |  \  `.___________|/                                   				")
 print("  `--'   `--'                                               					\033[0m")
 
+""" Function runs git clone {url} {destination} in the console.
+
+    1. url (str) --> A string containing url to the repository with a template
+    2. destination (str) --> A string containing the path to clone the repository into
+"""
 def git_clone(url, destination):
     env = os.environ.copy()
     env['GIT_TERMINAL_PROMPT'] = '0'
-    result = subprocess.run(['git', 'clone', url, destination], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, env=env)
+    result = subprocess.run(
+                            ['git', 'clone', url, destination], 
+                            stdout=subprocess.DEVNULL, 
+                            stderr=subprocess.PIPE, env=env
+                        )
+    
     return result.returncode, result.stderr.decode().strip()
 
+""" Function creates a directory for each template (If it doesn't exist).
+
+    1. url (str) --> A path used to create a directory
+"""
 def generate_destination_folder(url):
     folder_name = os.path.basename(url.rstrip('.git'))
     counter = 1
+
     while os.path.exists(os.path.join('TRASH', folder_name)):
         folder_name = f"{os.path.basename(url.rstrip('.git'))}_{counter}"
         counter += 1
+
     return folder_name
 
+""" Function creates a directory and clones the repository into it.
+
+    1. repo (str) --> A string containing url to the repository with a template
+"""
 def clone_repository(repo):
     destination = generate_destination_folder(repo)
     return_code, error_msg = git_clone(repo, os.path.join('TRASH', destination))
+
     if return_code != 0 or 'Username for' in error_msg:
         return repo
+    
     return None
 
+""" Function goes through the "PleaseUpdateMe.txt" file and starts "extracting" the templates from each
+    repository in that file. "PleaseUpdateMe.txt" is expected to be updated regularly.
+
+    1. url (str) --> A string containing url to the repository with a template
+    2. destination (str) --> A string containing the path to clone the repository into
+"""
 def clone_repositories(file_url):
     response = requests.get(file_url)
+
     if response.status_code == 200:
         repositories = response.text.strip().split('\n')
     else:
@@ -60,16 +89,21 @@ def clone_repositories(file_url):
 
         with tqdm(total=total_repos, unit='repo', desc='Cloning repositories', ncols=80) as progress_bar:
             completed = 0
+
             while completed < total_repos:
                 done, _ = wait(futures, return_when='FIRST_COMPLETED')
                 completed += len(done)
+
                 for future in done:
                     failed_repo = future.result()
+
                     if failed_repo:
                         failed_repos.append(failed_repo)
+
                     progress_bar.update(1)
                     progress = progress_bar.n / total_repos * 100
                     progress_bar.set_postfix({'Progress': f'{progress:.2f}%'})
+
                 futures = [future for future in futures if not future.done()]
 
         progress_bar.close() 
@@ -78,10 +112,12 @@ def clone_repositories(file_url):
 
     if failed_repos:
         print("\033[91mFailed to clone the following repositories:\033[0m")
+
         for repo in failed_repos:
             print(repo)
 
     template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Template')
+
     if not os.path.exists(template_folder):
         os.makedirs(template_folder)
 
@@ -99,11 +135,15 @@ def clone_repositories(file_url):
     print(f'\033[92m \n{yaml_count} Nuclei Templates files copied to the Template folder.\033[0m')
     
     shutil.rmtree('TRASH')
+
     print('\nRemoving caches and temporary files.\n')
+
     time.sleep(2)
+
     print('\033[91m\033[93mPlease show your support by giving star to my GitHub repository "AllForOne".')
     print('GITHUB: https://github.com/AggressiveUser/AllForOne\033[0m')
-    
-file_url = 'https://raw.githubusercontent.com/AggressiveUser/AllForOne/main/PleaseUpdateMe.txt'
 
-clone_repositories(file_url)
+if __name__ == "__main__":
+    file_url = 'https://raw.githubusercontent.com/AggressiveUser/AllForOne/main/PleaseUpdateMe.txt'
+
+    clone_repositories(file_url)
