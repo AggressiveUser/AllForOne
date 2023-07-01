@@ -1,4 +1,7 @@
-# AllForOne - Nuclei Template Collector 👤
+<img src="https://repository-images.githubusercontent.com/642913332/bd706c0c-c971-402f-be4d-e139f32cb146" align=right width=400/>
+
+  
+# AllForOne - Nuclei Template Collector 
 
 Welcome to the "AllForOne" repository! :rocket: This repository contains a Python script that allows bug bounty hunters and security researchers to collect all Nuclei YAML templates from various public repositories, helping to streamline the process of downloading multiple templates using just a single repository.
 
@@ -24,7 +27,7 @@ To get started, follow these steps:
 ```python AllForOne.py```  :snake:
 
 4.  Sit back and relax! The script will start collecting the Nuclei templates from public repositories.
- <img src="https://i.ibb.co/0BMmgXJ/image.png" width=500/>
+ <img src="https://i.ibb.co/hCh6vXB/image.png" width=500/>
 
 ## Result :file_folder:
 
