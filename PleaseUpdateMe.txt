@@ -9,7 +9,7 @@ https://github.com/5cr1pt/templates
 https://github.com/ARPSyndicate/kenzer-templates
 https://github.com/Akokonunes/Private-Nuclei-Templates
 https://github.com/Arvinthksrct/alltemplate
-https://github.com/AshiqurEmon/nuclei_templates.git
+https://github.com/AshiqurEmon/nuclei_templates
 https://github.com/CharanRayudu/Custom-Nuclei-Templates
 https://github.com/DoubleTakes/nuclei-templates
 https://github.com/Elsfa7-110/mynuclei-templates
@@ -30,6 +30,7 @@ https://github.com/R-s0n/Custom_Vuln_Scan_Templates
 https://github.com/Saimonkabir/Nuclei-Templates
 https://github.com/Saptak9983/Nuclei-Template
 https://github.com/ShangRui-hash/my-nuclei-templates
+https://github.com/freakyclown/Nuclei_templates
 https://github.com/SirAppSec/nuclei-template-generator-log4j
 https://github.com/Str1am/my-nuclei-templates
 https://github.com/SumedhDawadi/Custom-Nuclei-Template
@@ -104,6 +105,9 @@ https://github.com/thebrnwal/Content-Injection-Nuclei-Script
 https://github.com/thecyberneh/nuclei-templatess
 https://github.com/thelabda/nuclei-templates
 https://github.com/themoonbaba/private_templates
+https://github.com/rix4uni/BugBountyTips
+https://github.com/Lu3ky13/Authorization-Nuclei-Templates
+https://github.com/bug-vs-me/nuclei
 https://github.com/topscoder/nuclei-wordfence-cve
 https://github.com/toramanemre/apache-solr-log4j-CVE-2021-44228
 https://github.com/toramanemre/log4j-rce-detect-waf-bypass
@@ -117,5 +121,22 @@ https://github.com/yavolo/nuclei-templates
 https://github.com/z3bd/nuclei-templates
 https://github.com/zer0yu/Open-PoC
 https://github.com/zinminphyo0/KozinTemplates
+<<<<<<< Updated upstream
 https://github.com/projectdiscovery/nuclei-templates
 https://github.com/pikpikcu/my-nuclei-templates
+=======
+https://github.com/foulenzer/foulenzer-templates
+https://github.com/joanbono/nuclei-templates
+https://github.com/Nithissh0708/Custom-Nuclei-Templates
+https://github.com/ChiaraNRTT96/BountySkill
+https://github.com/bhataasim1/PersonalTemplates
+https://github.com/themastersunil/Nuclei-TamplatesBackup
+https://github.com/themastersunil/nucleiDB
+https://github.com/Linuxinet/nuclei-templates
+https://github.com/Aituglo/nuclei-templates
+https://github.com/abbycantcode/Nuclei-Template
+https://github.com/pacho15/mynuclei_templates
+https://github.com/pikpikcu/my-nuclei-templates
+https://github.com/SirBugs/Priv8-Nuclei-Templates
+https://github.com/projectdiscovery/nuclei-templates
+>>>>>>> Stashed changes

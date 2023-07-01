@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import subprocess
 import shutil
@@ -7,6 +5,8 @@ import time
 import requests
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, wait
+import glob
+from tabulate import tabulate
 
 print("\033[91m\033[93m  ,-.       _,---._ __  / \      _   _ _     ___              ___               ")
 print(r" /  )    .-'       `./ /   \    /_\ | | |   / __\__  _ __    /___\_ __   ___    ")
@@ -81,29 +81,73 @@ def clone_repositories(file_url):
         for repo in failed_repos:
             print(repo)
 
-    template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Template')
-    if not os.path.exists(template_folder):
-        os.makedirs(template_folder)
+    template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Templates')
+    os.makedirs(template_folder, exist_ok=True)
 
-    yaml_count = 0
     for root, dirs, files in os.walk('TRASH'):
         for file in files:
             if file.endswith('.yaml'):
                 source_path = os.path.join(root, file)
-                destination_path = os.path.join(template_folder, file)
+                cve_year = extract_cve_year(file)  
+                if cve_year:
+                    destination_folder = os.path.join(template_folder, f"CVE-{cve_year}")
+                else:
+                    destination_folder = os.path.join(template_folder, "Vulnerability-Templates")
+                os.makedirs(destination_folder, exist_ok=True)
+                destination_path = os.path.join(destination_folder, file)
                 shutil.copy2(source_path, destination_path)
-                
-    yaml_files = [file for file in os.listdir(template_folder) if file.endswith('.yaml')]
-    yaml_count = len(yaml_files)
-
-    print(f'\033[92m \n{yaml_count} Nuclei Templates files copied to the Template folder.\033[0m')
-    
-    shutil.rmtree('TRASH')
     print('\nRemoving caches and temporary files.\n')
+    shutil.rmtree('TRASH')
     time.sleep(2)
-    print('\033[91m\033[93mPlease show your support by giving star to my GitHub repository "AllForOne".')
-    print('GITHUB: https://github.com/AggressiveUser/AllForOne\033[0m')
-    
+
+
+def extract_cve_year(file_name):
+    if file_name.startswith('CVE-') and file_name[4:8].isdigit():
+        return file_name[4:8]
+    return None
+
+def count_yaml_files(folder):
+    count = 0
+    for root, dirs, files in os.walk(folder):
+        for file in files:
+            if file.endswith('.yaml'):
+                count += 1
+    return count
+
+
+def summarize_templates():
+
+    cve_folders = glob.glob(os.path.join(template_folder, 'CVE-*'))
+    cve_yaml_count = 0
+    for folder in cve_folders:
+        cve_yaml_count += count_yaml_files(folder)
+
+    vulnerability_templates_folder = os.path.join(template_folder, 'Vulnerability-Templates')
+    vulnerability_yaml_count = count_yaml_files(vulnerability_templates_folder)
+
+    total_yaml_count = cve_yaml_count + vulnerability_yaml_count
+
+    data = [
+        ["CVE Templates", cve_yaml_count],
+        ["Other Vulnerability Templates", vulnerability_yaml_count],
+        ["Total Templates", total_yaml_count]
+    ]
+
+    headers = ["Templates Type", "Templates Count"]
+
+    table = tabulate(data, headers, tablefmt="fancy_grid")
+
+    print(table)
+
+
 file_url = 'https://raw.githubusercontent.com/AggressiveUser/AllForOne/main/PleaseUpdateMe.txt'
 
 clone_repositories(file_url)
+
+template_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Templates')
+
+summarize_templates()
+
+#Intro
+print('\033[91m\033[93mPlease show your support by giving star to my GitHub repository "AllForOne".')
+print('GITHUB: https://github.com/AggressiveUser/AllForOne\033[0m')
