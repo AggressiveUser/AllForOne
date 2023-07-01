@@ -121,8 +121,6 @@ https://github.com/yavolo/nuclei-templates
 https://github.com/z3bd/nuclei-templates
 https://github.com/zer0yu/Open-PoC
 https://github.com/zinminphyo0/KozinTemplates
-https://github.com/projectdiscovery/nuclei-templates
-https://github.com/pikpikcu/my-nuclei-templates
 https://github.com/foulenzer/foulenzer-templates
 https://github.com/joanbono/nuclei-templates
 https://github.com/Nithissh0708/Custom-Nuclei-Templates
