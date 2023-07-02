@@ -1,6 +1,6 @@
-
-![AllForOne - Nuclei Template Collector](https://i.ibb.co/SKGmMyM/WEEEK-1.png)
 # AllForOne - Nuclei Template Collector 👤
+<img width=350px src="https://i.ibb.co/SKGmMyM/WEEEK-1.png" alt="AllForOne - Nuclei Template Collector">
+
 Welcome to the "AllForOne" repository! :rocket: This repository contains a Python script that allows bug bounty hunters and security researchers to collect all Nuclei YAML templates from various public repositories, helping to streamline the process of downloading multiple templates using just a single repository.
 
 ## How it Works :gear:
